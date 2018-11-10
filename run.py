@@ -22,10 +22,8 @@ init()
 def lambda_handler(event):
     try:
         log('Event: ' + str(event))
-        body = json.loads(event['body'])
-        message = telebot.types.Message.de_json(body['message'])
-        answer = dialog_engine.choose_answer(message)
-        bot.reply_to(message, answer)
+        answer = dialog_engine.choose_answer(event)
+        bot.reply_to(event, answer)
 
     except Exception as e:
         log('Error: ' + str(e))
