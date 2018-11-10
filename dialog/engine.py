@@ -8,10 +8,6 @@ from itertools import chain
 
 
 class DialogEngine(object):
-    def __init__(self):
-        log('Answers data:')
-        for question, answers in chain(tatar_data.items(), data.items()):
-            log(question + ' -> ' + str(answers))
 
     @staticmethod
     def choose_answer(message):

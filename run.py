@@ -21,7 +21,6 @@ init()
 @bot.message_handler(func=lambda m: True)
 def lambda_handler(event):
     try:
-        log('Event: ' + str(event))
         answer = dialog_engine.choose_answer(event)
         bot.reply_to(event, answer)
 
