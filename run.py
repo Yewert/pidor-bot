@@ -19,16 +19,13 @@ def init():
 init()
 
 @bot.message_handler(func=lambda m: True)
-def lambda_handler(event, context, offline_mode=False):
+def lambda_handler(event):
     try:
         log('Event: ' + str(event))
         body = json.loads(event['body'])
         message = telebot.types.Message.de_json(body['message'])
         answer = dialog_engine.choose_answer(message)
-        if not offline_mode:
-            bot.reply_to(message, answer)
-        else:
-            log('Answer: ' + str(answer))
+        bot.reply_to(message, answer)
 
     except Exception as e:
         log('Error: ' + str(e))
