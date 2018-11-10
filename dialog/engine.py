@@ -10,7 +10,7 @@ from itertools import chain
 class DialogEngine(object):
     def __init__(self):
         log('Answers data:')
-        for question, answers in data.items():
+        for question, answers in chain(tatar_data.items(), data.items()):
             log(question + ' -> ' + str(answers))
 
     @staticmethod
@@ -19,10 +19,10 @@ class DialogEngine(object):
         if type(message) == str:
             text = message
         elif type(message) == Message:
-            log(message.from_user.username)
+            if message.from_user.username == 'zarix908':
+                return DialogEngine.chose_answer_for_tatarin(message)
             text = message.text
 
-        log('Message text: ' + str(text))
         for question, answers in data.items():
             if re.match(question, text):
                 return random.choice(answers)
