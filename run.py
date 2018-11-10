@@ -4,7 +4,6 @@ import os
 import telebot
 
 from util.log_helper import log
-from util.example_event import example
 from dialog.engine import DialogEngine
 
 
@@ -17,7 +16,9 @@ def init():
     telegram_api_key = os.environ.get('TOKEN')
     bot = telebot.TeleBot(telegram_api_key)
 
+init()
 
+@bot.message_handler(func=lambda m: True)
 def lambda_handler(event, context, offline_mode=False):
     try:
         log('Event: ' + str(event))
@@ -40,8 +41,5 @@ def lambda_handler(event, context, offline_mode=False):
         }
     }
 
+bot.polling()
 
-init()
-
-if __name__ == '__main__':
-    lambda_handler(event=example, context=None, offline_mode=True)
