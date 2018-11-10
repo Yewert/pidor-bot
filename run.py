@@ -24,8 +24,8 @@ def lambda_handler(event):
         answer = dialog_engine.choose_answer(event)
         bot.reply_to(event, answer)
 
-    except Exception as e:
-        log('Error: ' + str(e))
+    except Exception:
+        pass
 
     return {
         'statusCode': 200,
@@ -35,5 +35,8 @@ def lambda_handler(event):
         }
     }
 
-bot.polling()
-
+while True:
+    try:
+        bot.polling()
+    except Exception as e:
+        log(e)
