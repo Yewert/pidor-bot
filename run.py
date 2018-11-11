@@ -19,7 +19,7 @@ bot = telebot.TeleBot(telegram_api_key)
 @bot.message_handler(func=lambda m: True)
 def lambda_handler(message):
     try:
-        if message is not Message:
+        if type(message) is not Message:
             logger.warning(type(message))
         if message.content_type != 'text':
             logger.info(message)
