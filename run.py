@@ -6,7 +6,7 @@ from dialog.engine import DialogEngine
 
 import logging
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.DEBUG, filename='bot.log')
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO, filename='bot.log')
 logger = logging.getLogger(__name__)
 
 
@@ -22,7 +22,7 @@ def lambda_handler(message):
         if message is not Message:
             return
         if message.content_type != 'text':
-            logger.debug(message)
+            logger.info(message)
         answer = dialog_engine.choose_answer(message)
         if answer:
             bot.reply_to(message, answer)
