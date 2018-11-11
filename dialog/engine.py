@@ -3,7 +3,6 @@ import re
 
 from telebot.types import Message
 from dialog.answers import data, tatar_data, photo_answers
-from util.log_helper import log
 from itertools import chain
 
 
@@ -26,7 +25,7 @@ class DialogEngine(object):
 
     @staticmethod
     def chose_answer_for_tatarin(message):
-        if message.content_type == 'photo':
+        if message.photo:
             return random.choice(photo_answers)
         for question, answers in chain(tatar_data.items(), data.items()):
             if re.match(question, message.text):
