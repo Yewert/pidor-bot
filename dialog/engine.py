@@ -1,10 +1,12 @@
 import random
 import re
-
+import logging
 from telebot.types import Message
 from dialog.answers import data, tatar_data, photo_answers
 from itertools import chain
 
+
+logger = logging.getLogger(__name__)
 
 class DialogEngine(object):
 
@@ -14,7 +16,8 @@ class DialogEngine(object):
         if type(message) == str:
             text = message
         elif type(message) == Message:
-            if message.from_user.username == 'zarix908':
+            logger.info(message.from_user)
+            if 'Yewert' in message.from_user.username:
                 return DialogEngine.chose_answer_for_tatarin(message)
             text = message.text
 
