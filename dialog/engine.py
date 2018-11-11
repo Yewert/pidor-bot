@@ -16,8 +16,7 @@ class DialogEngine(object):
         if type(message) == str:
             text = message
         elif type(message) == Message:
-            logger.info(message.from_user)
-            if 'Yewert' in message.from_user.username:
+            if 'zarix908' in message.from_user.username:
                 return DialogEngine.chose_answer_for_tatarin(message)
             text = message.text
 
